@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 import { data } from './data';
-import SpecificBook from './Book';
+import SpecificBook from './Books';
 import { greeting } from './testing/testing';
 
 function Booklist() {
