@@ -4,49 +4,19 @@ import ReactDOM from 'react-dom';
 // CSS
 import './index.css';
 
-import {books} from './books'
-
-
+import { data } from './data';
+import SpecificBook from './Book';
+import { greeting } from './testing/testing';
 
 function Booklist() {
+  console.log(greeting);
   return (
     <section className='booklist'>
-      {books.map((book) => {
-        return <Book key={book.id} {...book}></Book>;
+      {data.map((book) => {
+        return <SpecificBook key={book.id} {...book}></SpecificBook>;
       })}
     </section>
   );
 }
-
-const Book = ({ img, title, author }) => {
-  //attribute, eventHandler
-  // onClick, onMouseOver
-  const clickHandler = (e) => {
-    console.log(e);
-    console.log(e.target);
-    alert('poke poke');
-  };
-  const complexExample = (author) => {
-    console.log(author);
-  };
-  return (
-    <article
-      className='book'
-      onMouseOver={() => {
-        console.log(title);
-      }}
-    >
-      <img src={img} alt='' />
-      <h1 onClick={() => console.log(title)}>{title}</h1>
-      <h4>{author}</h4>
-      <button type='button' onClick={clickHandler}>
-        BUTTON BUTTON
-      </button>
-      <button type='button' onClick={() => complexExample(author)}>
-        more complex example
-      </button>
-    </article>
-  );
-};
 
 ReactDOM.render(<Booklist />, document.getElementById('root'));
