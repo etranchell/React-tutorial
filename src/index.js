@@ -1,48 +1,52 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-
 // CSS
 import './index.css';
 
-//JSX Rules
-// return single element
-// div / section / article or Fragment
-// stateless functional component
-// always return JSX
+import {books} from './books'
+
+
 
 function Booklist() {
   return (
     <section className='booklist'>
-      <Book />
-      <Book />
-      <Book />
-      <Book />
-      <Book />
-      <Book />
-      <Book />
+      {books.map((book) => {
+        return <Book key={book.id} {...book}></Book>;
+      })}
     </section>
   );
 }
 
-const Book = () => {
+const Book = ({ img, title, author }) => {
+  //attribute, eventHandler
+  // onClick, onMouseOver
+  const clickHandler = (e) => {
+    console.log(e);
+    console.log(e.target);
+    alert('poke poke');
+  };
+  const complexExample = (author) => {
+    console.log(author);
+  };
   return (
-    <article className='book'>
-      <Image></Image>
-      <Title></Title>
-      <Author></Author>
+    <article
+      className='book'
+      onMouseOver={() => {
+        console.log(title);
+      }}
+    >
+      <img src={img} alt='' />
+      <h1 onClick={() => console.log(title)}>{title}</h1>
+      <h4>{author}</h4>
+      <button type='button' onClick={clickHandler}>
+        BUTTON BUTTON
+      </button>
+      <button type='button' onClick={() => complexExample(author)}>
+        more complex example
+      </button>
     </article>
   );
 };
-
-const Image = () => (
-  <img
-    src='https://images-na.ssl-images-amazon.com/images/I/713toGwMnqL._AC_UL600_SR600,400_.jpg'
-    alt=''
-  />
-);
-
-const Title = () => <h1>Dad Jokes</h1>
-const Author = () => <h4>Jimmy Niro</h4>;
 
 ReactDOM.render(<Booklist />, document.getElementById('root'));
